@@ -1,0 +1,147 @@
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() = 0; // pure virtual function
+};
+
+class Derv1: public Base {
+public:
+    void show() {
+   	 cout << "Derv1\n";
+    }
+};
+
+
+class Derv2: public Base {
+public:
+    void show() {
+   	 cout << "Derv2\n";
+    }
+};
+
+int main() {
+    Derv1 derv1;
+    Derv2 derv2;
+    Base *ptr;
+    ptr = &derv1;
+    ptr -> show();
+    ptr = &derv2;
+    ptr -> show();
+    return 0;
+}
+Output:
+
+Derv1
+Derv2
+The class Base is now an abstract class and cannot be instantiated. Any class with a pure virtual function is an abstract class. Once you’ve placed a pure virtual function in the base class, you must override it in all the derived classes from which you want to instantiate objects. If a class doesn’t override the pure virtual function, it becomes an abstract class itself, and you can’t instantiate objects from it(although you might from classes derived from it). For consistency, you may want to make all the virtual functions in the base class pure.
+
+Abstract classes are also called interfaces in C++.
+
+
+
+
+A Good Example of Late Binding:
+
+#include <iostream>
+using namespace std;
+
+class Department {
+public:
+    void show() {
+        cout << "You are in CS dept\n";
+    }
+    virtual void getData() = 0;
+};
+
+class Professor: public Department {
+public:
+    void getData() {
+        Department::show();
+        cout << "You are in Professor section\n";
+    }
+};
+
+class Student: public Department {
+public:
+    void getData() {
+        Department::show();
+        cout << "You are in Students section\n";
+    }
+};
+
+
+int main() {
+    string s;
+    cin >> s;
+    Department *dept;
+    Student student;
+    if (s == "S") {
+        // same as: Department *dept = new Student();
+        // dept = &student;
+        dept = new Student();
+    } else {
+        dept = new Professor();
+    }
+    dept -> getData();
+    return 0;
+}
+Output:
+
+You are in CS dept
+You are in Professor section
+
+
+
+
+To implement virtual functions, C++ uses a special form of late binding known as the virtual table. The virtual table is a lookup table of functions used to resolve function calls in a dynamic/late binding manner. The virtual table sometimes goes by other names, such as “vtable”, “virtual function table”, “virtual method table”, or “dispatch table”.
+
+First, every class that uses virtual functions (or is derived from a class that uses virtual functions) is given its own virtual table. This table is simply a static array that the compiler sets up at compile time. A virtual table contains one entry for each virtual function that can be called by objects of the class. Each entry in this table is simply a function pointer that points to the most-derived function accessible by that class.
+
+Second, the compiler also adds a hidden pointer to the base class, which we will call *__vptr. *__vptr is set (automatically) when a class instance is created so that it points to the virtual table for that class. Unlike the *this pointer, which is actually a function parameter used by the compiler to resolve self-references, *__vptr is a real pointer. Consequently, it makes each class object allocated bigger by the size of one pointer. It also means that *__vptr is inherited by derived classes, which is important.
+
+class Base {
+public:
+    virtual void function1() {};
+    virtual void function2() {};
+};
+ 
+class D1: public Base {
+public:
+    virtual void function1() {};
+};
+ 
+class D2: public Base {
+public:
+    virtual void function2() {};
+};
+Because there are 3 classes here, the compiler will set up 3 virtual tables: one for Base, one for D1, and one for D2.
+
+The compiler also adds a hidden pointer to the most base class that uses virtual functions. Compiler does this automatically.
+
+class Base {
+public:
+    FunctionPointer *__vptr;
+    virtual void function1() {};
+    virtual void function2() {};
+};
+ 
+class D1: public Base {
+public:
+    virtual void function1() {};
+};
+ 
+class D2: public Base {
+public:
+    virtual void function2() {};
+};
+When a class object is created, *__vptr is set to point to the virtual table for that class. For example, when a object of type Base is created, *__vptr is set to point to the virtual table for Base. When objects of type D1 or D2 are constructed, *__vptr is set to point to the virtual table for D1 or D2 respectively.
+
+Now, let’s talk about how these virtual tables are filled out. Because there are only two virtual functions here, each virtual table will have two entries (one for function1(), and one for function2()). Remember that when these virtual tables are filled out, each entry is filled out with the most-derived function an object of that class type can call.
+
+The virtual table for Base objects is simple. An object of type Base can only access the members of Base. Base has no access to D1 or D2 functions. Consequently, the entry for function1 points to Base::function1(), and the entry for function2 points to Base::function2().
+
+The virtual table for D1 is slightly more complex. An object of type D1 can access members of both D1 and Base. However, D1 has overridden function1(), making D1::function1() more derived than Base::function1(). Consequently, the entry for function1 points to D1::function1(). D1 hasn’t overridden function2(), so the entry for function2 will point to Base::function2().
+
+The virtual table for D2 is similar to D1, except the entry for function1 points to Base::function1(), and the entry for function2 points to D2::function2().
