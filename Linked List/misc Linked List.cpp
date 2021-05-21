@@ -172,6 +172,7 @@ int main()
   
     return 0;
 }
+/*
 Output:
 
 List A before merge: 
@@ -179,4 +180,5 @@ List A before merge:
 List B before merge: 
 2 3 20 
 Merged Linked List is: 
-2 3 5 10 15 20 40 
+2 3 5 10 15 20 40
+*/
