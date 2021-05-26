@@ -48,6 +48,16 @@ bool Graph::isCyclic(){
             if(isCyclicUtil(i, -1)) return true;    
         }
     }
+	/*
+	To check if a graph is tree or not, there are 2 conditions:-
+	1. There should be no cycle in the graph. {which we are checking here)
+	2. Graph should be connected. (There shouldn't be any vertex which isn't visited after applying DFS or BFS on graph.)
+	For 2nd condition just add a for loop in isCyclic() func.
+	for(int i = 0; i < numOfVertices; i++){
+        if(!visited[i]) return false;
+    }
+	This will check if graph is a tree or not.
+	*/
     return false;
 }
 
