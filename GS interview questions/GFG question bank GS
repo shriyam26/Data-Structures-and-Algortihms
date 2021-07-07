@@ -1,0 +1,88 @@
+1. Given a linked list, write a function to reverse every k nodes (where k is an input to the function).
+https://leetcode.com/problems/reverse-nodes-in-k-group/
+
+2. Given a Binary Search Tree (BST) and a positive integer k, find the k’th largest element in the Binary Search Tree.
+https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+https://www.geeksforgeeks.org/kth-largest-element-in-bst-when-modification-to-bst-is-not-allowed/
+
+3. Special Stack data structure:- https://tutorialspoint.dev/data-structure/stack-data-structure/design-and-implement-special-stack-data-structure
+
+4. https://leetcode.com/problems/top-k-frequent-words/
+
+5. https://www.geeksforgeeks.org/find-the-ordering-of-tasks-from-given-dependencies/
+6. https://leetcode.com/problems/minimum-cost-for-tickets/
+7. Second problem was to find the kth lexicographically ordered string for a given string.
+
+8. Find all the pair of elements in an array that sum up to a given Value K.
+9. Find all the triplets of elements in an array that sum up to a given Value K.
+10. Missing numbers in an array containing 1 million elements. They asked me not to use set collection in this.
+
+11. https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/ 
+12. Two players A and B playing a game to pick number from the ends of array turn by turn. We have to maximize guarantee win for A. This a DP problem. I explained dp approach and then a greedy approach.
+
+13. Smallest subarray with sum greater than a given value. (https://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/)
+
+14. Internal working of hashmap.
+15. Find row number of a binary matrix having maximum number of 1s.(https://www.geeksforgeeks.org/find-row-number-binary-matrix-maximum-number-1s/)
+
+16. Given an unsorted array arr[0..n-1] of size n, find the minimum length subarray arr[s..e] such that sorting this subarray makes the whole array sorted.
+Example: If the input array is [10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60], your program should be able to find that the subarray lies between indexes 3 and 8.
+
+17. Given a binary array, in which, moving an element from index i to index j requires abs(i – j) cost. The task is to find the cost to move all 1s to each index of the given array.
+Input: 
+arr[] = {0, 1, 0, 1}
+Output: 
+4 2 2 2
+Explanation:
+
+Moving elements from index 1, index 3 to index 0 requires abs(0 – 1) + abs(0 – 3) = 4.
+
+Moving elements from index 1, index 3 to index 1 requires abs(1 – 1) + abs(1 – 3) = 2.
+
+Moving elements from index 1, index 2 to index 2 requires abs(2 – 1) + abs(2 – 3) = 2.
+
+Moving elements from index 1, index 2 to index 3 requires abs(3 – 1) + abs(3 – 3) = 2.
+
+18. Problem of placing N chess queens on an N×N chessboard so that no two queens attack each other.
+The expected output is a binary matrix which has 1s for the blocks where queens are placed.
+
+19. Implement a SnapshotArray that supports the following interface:
+SnapshotArray(int length) initializes an array-like data structure with the given length. Initially, each element equals 0.
+
+void set(index, val) sets the element at the given index to be equal to val.
+
+int snap() takes a snapshot of the array and returns the snap_id: the total number of times we called snap() minus 1.
+
+int get(index, snap_id) returns the value at the given index, at the time we took the snapshot with the given snap_id
+
+Solution: Use the 2D Array of class Node , the 1D is used to store the indices and 2D is used to store the snap shots. For each index to get the value at particular snap id , we can use binary search as the snap array in each index will be sorted and Complexity of get Operation reduces to log(N).
+
+20. https://www.hackerrank.com/challenges/connected-cell-in-a-grid/problem
+
+21. Given an array of random numbers, Push all the zero’s of a given array to the end of the array. For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0}, it should be changed to {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other elements should be same.
+
+22. Given an m*n Matrix of 0’s and 1’s, find the row having max 1’s. Optimization asked.
+23. https://www.geeksforgeeks.org/a-boolean-matrix-question/
+24. Knight in a maze problem, high-level discussion
+Expected time complexity is O(n) and extra space is O(1).
+25. What all design patterns I have used?
+26. https://www.geeksforgeeks.org/count-possible-decodings-given-digit-sequence/
+27. Print Left View of a Binary Tree
+28. Sliding Window Maximum (Maximum of all subarrays of size k)
+29. Minimum Number of Platforms Required for a Railway/Bus Station
+30. Find subarray with given sum | Set 2 (Handles Negative Numbers)
+
+31. https://www.geeksforgeeks.org/goldman-sachs-interview-experience-for-java-developer-3-years-experienced/
+
+32. Implement getMin() for a stack.
+33. The intersection point of a LinkedList.
+
+34. Candy Crush problem: For a stream of integers, all consecutive same numbers appearing more than 3 times would get canceled out. At the end return the remaining sequence of integers. I was asked about the kind of data structure that I would use. The expected time complexity was O(n). Solution: I discussed the approach using stack and keeping track of the top of the stack, I was able to solve it in O(n).
+https://medium.com/algorithm-and-datastructure/candy-crush-remove-repeating-numbers-1020e3bddfb
+35. Shuffled playlist. The song which is playing currently will be played after all other songs in the playlist are played at least once.
+Different ways of iterating over a List
+
+
+36. Therefore, the required output is 4 2 2 2.
+
+37. Here is a variation of the problem asked https://www.geeksforgeeks.org/find-the-only-missing-number-in-a-sorted-array/?ref=rp. The difference being the integers need not be in the range 1 to n-1. It can start from any integer.

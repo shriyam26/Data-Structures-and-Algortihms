@@ -154,7 +154,31 @@ class node
     int data;
     node* left, *right;
 };
- 
+
+-------------------------------------------------------------
+/* Leetcode solution */
+class Solution {
+public:
+    void getCurrentLevel(TreeNode* root, int level, vector<vector<int>> &ans){
+        if(!root) return;
+        if(level == ans.size()) ans.push_back({});
+        ans[level].push_back(root->val);
+        if(root->left){
+            getCurrentLevel(root->left, level + 1, ans);
+        }
+        if(root->right){
+            getCurrentLevel(root->right, level + 1, ans);
+        }
+        return;
+    }
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ans  = {};
+        getCurrentLevel(root, 0, ans);
+        return ans;
+    }
+    
+};
+--------------------------------------------------- 
 void printCurrentLevel(node* root, int level);
 int height(node* node);
 node* newNode(int data);

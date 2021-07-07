@@ -1,0 +1,83 @@
+Goldman Sachs Interview Questions:-
+
+Watch Tushar roy youtube channel. Seems interesting!
+
+A.) https://leetcode.com/discuss/interview-experience/873111/goldman-sachs-software-engineer-analyst-bangalore-india-august-september-2020-selected
+
+1. Given two arrays, pick one element from the first array and another element from the second array such that their absolute difference is minimum.
+https://www.geeksforgeeks.org/smallest-difference-pair-values-two-unsorted-arrays/
+
+2. Given a number represented in string format, find the next greatest permutation or next greater number. Example: Input 12345, Output: 12354
+https://leetcode.com/problems/next-permutation/
+
+3. Detect loop in a circular array.
+https://leetcode.com/problems/circular-array-loop/
+
+B.) https://leetcode.com/discuss/interview-question/1281425/Goldman-Interview-Experience18-June-2021
+
+1. Given two sorted arrays, find the median of the combined array.
+https://leetcode.com/problems/median-of-two-sorted-arrays/
+
+2. Sum of each level in a binary tree
+
+3. Given an array with duplicate elements, return teh array without any three consecutive array elements repeated.
+
+4. https://leetcode.com/problems/pancake-sorting/
+
+5.  https://www.codingninjas.com/codestudio/problems/subarrays-with-at-most-k-distinct-values_1473804
+
+6. Two interviewers were present. First question was to implement multiplication and division without , /, - 
+
+7. Next I was asked to provide test cases for a function that counts the number of set bits in a number. 
+8. In the end there was a problem to convert infix to prefix expression. It was the last 5 minutes of the interview.
+
+9. https://leetcode.com/problems/repeated-dna-sequences/
+10. https://leetcode.com/problems/roman-to-integer/
+11. https://leetcode.com/problems/integer-to-roman/
+
+12. Top view of a binary tree
+13. Find and print all possible palidromic substring (optimal solution only)
+14. LRU cache
+15. Questions on how and when can we send requests in batch ( gave a very big example which ultimately boiled down to the fact that we had to send the requests in a batch)
+puzzle: max no of pieces we can get from a circular cake with 3 cuts
+
+16.Explain and give practical example of any design pattern (possible if used in any of prev projects)
+
+17. Delete consecutive same character in a given string and return the final string
+
+eg abbacd -> cd
+
+18. https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii
+
+19. https://leetcode.com/problems/house-robber/
+20. Design API rate limiter (HLD)
+21. Applications of Decorator, Dependency Injection & other design patterns (was asked to write sample Java code for each)
+22. https://leetcode.com/problems/alien-dictionary/
+23. A question similar to https://leetcode.com/problems/merge-k-sorted-lists/
+
+Also discussed a scenario to merge sorted lists online
+24. Design Job Scheduler using message queues (HLD)
+25. https://leetcode.com/problems/course-schedule/.
+26. https://leetcode.com/problems/minimum-cost-for-tickets/
+27. the second problem was to find the kth lexicographically ordered string for a given string.
+28. Reverse a stack without using any other structure.
+29. How would you design thread pool
+30. How would you implement Undo-Redo feature in an application
+31. Given two strings, return true if one is rotated version of other
+32. Given stock prices need to return how many days was ith stock price greatest
+Example:
+Prices = [10 20 30 40 10 20 60]
+Output = [1 2 3 4 1 2 7]
+33. How to design a vending machine
+34. Add two linked list
+35. Maximun subarray product
+36. Find LCA of BST. Then followed up for Binary Tree.
+37. Find the difference between two arrays: Two unsorted arrays are given, and you need to find (arr1 – arr2) and (arr2 – arr1). The difference between the two arrays is defined as all the elements from the first array which are not present in the second array, taking the number of occurrences into consideration.
+Example:
+arr1: [3, 5, 2, 7, 4, 2, 7] arr2: [1, 7, 5, 2, 2, 9]
+arr1 – arr2 = [3, 7, 4]
+arr2 – arr1 = [1, 7]
+38. Given an array of citations, calculate the researcher’s h-index.
+39.The Follow-up question was: h-index II
+40. Given an imbalanced BST, return the balanced BST.
+41. Maximum Number of Events That Can Be Attended
