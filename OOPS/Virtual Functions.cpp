@@ -2,6 +2,108 @@
 using namespace std;
 
 class Base {
+https://github.com/notescs/C-CPP-OOPS-for-Interviews
+
+public:
+    void show() {
+   	 cout << "Base\n";
+    }
+};
+
+class Derv1: public Base {
+public:
+    void show() {
+   	 cout << "Derv1\n";
+    }
+};
+
+
+class Derv2: public Base {
+public:
+    void show() {
+   	 cout << "Derv2\n";
+    }
+};
+
+int main() {
+    Derv1 derv1;
+    Derv2 derv2;
+    Base *ptr;
+    ptr = &derv1;
+    ptr -> show();
+    ptr = &derv2;
+    ptr -> show();
+    return 0;
+}
+Output:
+
+Base
+Base
+
+This is Static/Early Binding. In this the compiler decides on the basis of type of pointer rather than content.
+
+Compile-time/Static polymorphism => Function overloading (this one), Operator overloading
+
+
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() {
+   	 cout << "Base\n";
+    }
+};
+
+class Derv1: public Base {
+public:
+    void show() {
+   	 cout << "Derv1\n";
+    }
+};
+
+
+class Derv2: public Base {
+public:
+    void show() {
+   	 cout << "Derv2\n";
+    }
+};
+
+int main() {
+    Derv1 derv1;
+    Derv2 derv2;
+    Base *ptr;
+    ptr = &derv1;
+    ptr -> show();
+    ptr = &derv2;
+    ptr -> show();
+    return 0;
+}
+Output:
+
+Derv1
+Derv2
+
+
+Prepend virtual keyword to the function definition => virtual function.
+
+The rule is that the compiler selects the function based on the contents of ptr, not type. Type is used in non-virtual case. This is decided at runtime, so it is called Runtime Polymorphism.
+
+Here the compiler does not know what class the contents of ptr may contain. It may content address of an object of the Derv1 class or of the Derv2 class. At runtime, this is decided on the basis of content. When it is known what class is pointed to by ptr, the appropriate version is called. This is known as Late Binding.
+
+
+
+-------------------------
+
+Pure Virtual Functions
+
+If there is no need to implement the virtual function in base class, then we can declare it to 0.
+
+#include <iostream>
+using namespace std;
+
+class Base {
 public:
     virtual void show() = 0; // pure virtual function
 };
@@ -35,7 +137,9 @@ Output:
 
 Derv1
 Derv2
-The class Base is now an abstract class and cannot be instantiated. Any class with a pure virtual function is an abstract class. Once you’ve placed a pure virtual function in the base class, you must override it in all the derived classes from which you want to instantiate objects. If a class doesn’t override the pure virtual function, it becomes an abstract class itself, and you can’t instantiate objects from it(although you might from classes derived from it). For consistency, you may want to make all the virtual functions in the base class pure.
+
+Abstract classes are that classes that are restricted to make objects, hence cannot be instantiated.
+If we use pure virtual functions in our base code then it should be override in all derived classes otherwise, the derived class which didn't override will also become abstract classes.
 
 Abstract classes are also called interfaces in C++.
 
@@ -93,6 +197,41 @@ You are in CS dept
 You are in Professor section
 
 
+Virtual Destructors
+
+
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+	void show() {
+    	cout << "Base\n";
+	}
+	virtual ~Base() {
+   	 cout << "Base destroyed\n";
+	}
+};
+
+class Derv: public Base {
+public:
+	void show() {
+    	cout << "Derv\n";
+	}
+	~Derv() {
+   	 cout << "Derv destroyed\n";
+	}
+};
+
+int main() {
+    Base *pBase = new Derv();
+    delete pBase;
+}
+Deletes both Base and Derv. If not virtual, only “Base” will be deleted.
+
+Output:
+Derv destroyed
+Base destroyed
 
 
 To implement virtual functions, C++ uses a special form of late binding known as the virtual table. The virtual table is a lookup table of functions used to resolve function calls in a dynamic/late binding manner. The virtual table sometimes goes by other names, such as “vtable”, “virtual function table”, “virtual method table”, or “dispatch table”.
@@ -145,3 +284,76 @@ The virtual table for Base objects is simple. An object of type Base can only ac
 The virtual table for D1 is slightly more complex. An object of type D1 can access members of both D1 and Base. However, D1 has overridden function1(), making D1::function1() more derived than Base::function1(). Consequently, the entry for function1 points to D1::function1(). D1 hasn’t overridden function2(), so the entry for function2 will point to Base::function2().
 
 The virtual table for D2 is similar to D1, except the entry for function1 points to Base::function1(), and the entry for function2 points to D2::function2().
+
+
+
+------------------------------------------------------
+
+Friend Fucntions
+
+Friend functions act as bridge between classes.
+
+# include <iostream>
+using namespace std;
+
+class Beta;
+
+class Alpha {
+private:
+	int data;
+public:
+	Alpha(): data(3) { };
+	friend int friendFunction(Alpha, Beta);
+};
+
+class Beta {
+private:
+	int data;
+public:
+	Beta(): data(7) { };
+	friend int friendFunction(Alpha, Beta);
+};
+
+
+int friendFunction(Alpha alpha, Beta beta) {
+	return alpha.data + beta.data;
+}
+
+int main() {
+	Alpha alpha;
+	Beta beta;
+	cout << friendFunction(alpha, beta) << "\n"; // outputs 10
+	return 0;
+}
+
+
+Friend Classes
+
+# include <iostream>
+using namespace std;
+
+
+class Alpha {
+private:
+	int data;
+public:
+	Alpha(): data(3) { };
+	friend class Beta;
+};
+
+class Beta { // can access all private of Alpha
+public:
+	void func1(Alpha alpha) {
+    	cout << alpha.data << "\n";
+	}
+};
+
+
+int main() {
+	Alpha alpha;
+	Beta beta;
+	beta.func1(alpha);
+	return 0;
+}
+
+Friend functions and classes can access private and protected members too.
