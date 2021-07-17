@@ -1,0 +1,41 @@
+A transaction can be defined as a group of tasks. A single task is the minimum processing unit which cannot be divided further.
+
+Let’s take an example of a simple transaction. Suppose a bank employee transfers Rs 500 from A's account to B's account. This very simple and small transaction involves several low-level tasks.
+
+A’s Account
+
+Open_Account(A)
+Old_Balance = A.balance
+New_Balance = Old_Balance - 500
+A.balance = New_Balance
+Close_Account(A)
+B’s Account
+
+Open_Account(B)
+Old_Balance = B.balance
+New_Balance = Old_Balance + 500
+B.balance = New_Balance
+Close_Account(B)
+
+A Database Transaction is a logical unit of processing in a DBMS which entails one or more database access operation. In a nutshell, database transactions represent real-world events of any enterprise.
+
+All types of database access operation which are held between the beginning and end transaction statements are considered as a single logical transaction in DBMS. During the transaction the database is inconsistent. Only once the database is committed the state is changed from one consistent state to another.
+
+ACID Properties:-
+
+A transaction in a database system must maintain Atomicity, Consistency, Isolation, and Durability − commonly known as ACID properties − in order to ensure accuracy, completeness, and data integrity.
+
+1. Atomicity: A transaction is a single unit of operation. You either execute it entirely or do not execute it at all. There cannot be partial execution.
+
+2. Consistency: Once the transaction is executed, it should move from one consistent state to another.
+
+3. Isolation: Transaction should be executed in isolation from other transactions (no Locks). During concurrent transaction execution, intermediate transaction results from simultaneously executed transactions should not be made available to each other. (Level 0,1,2,3)
+
+4. Durability: · After successful completion of a transaction, the changes in the database should persist. Even in the case of system failures.
+
+
+SQL databases are relational, NoSQL are non-relational.
+SQL databases use structured query language and have a predefined schema. NoSQL databases have dynamic schemas for unstructured data.
+SQL databases are vertically scalable, NoSQL databases are horizontally scalable.
+SQL databases are table based, while NoSQL databases are document, key-value, graph or wide-column stores.
+SQL databases are better for multi-row transactions, NoSQL are better for unstructured data like documents or JSON.
