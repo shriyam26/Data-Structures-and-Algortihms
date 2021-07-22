@@ -132,3 +132,140 @@ void deleteNode(Node** head, int key){
         delete temp;
     }
 }
+
+/* Leetcode Solution */
+
+class Node{
+public:
+    int val;
+    Node* next;
+    Node(int x){
+        val = x;
+        next = nullptr;
+    }
+};
+
+class MyLinkedList {
+public:
+    /** Initialize your data structure here. */
+    Node* head;
+    int size;
+
+    MyLinkedList() {
+        head = nullptr;
+        size = 0;
+    }
+    
+    /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
+    int get(int index) {
+        if(index >= size || index < 0)
+            return -1;
+        Node* curr = head;
+        int i = 0;
+        while(i < index){
+            curr = curr->next;
+            i++;
+        }
+        //print();
+        return curr->val;
+    }
+    
+    /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+    void addAtHead(int val) {
+        if(head == nullptr) {
+            head = new Node(val);
+            //print();
+            size++;
+            return;
+        }
+        Node* temp = new Node(val);
+        temp->next = head;
+        head = temp;
+        //print();
+        size++;
+    }
+    
+    /** Append a node of value val to the last element of the linked list. */
+    void addAtTail(int val) {
+        if(head == nullptr){
+            head = new Node(val);
+            size++;
+            return;
+        }
+        Node* curr = head;
+        Node* temp = new Node(val);
+        while(curr->next)
+            curr= curr->next;
+        curr->next = temp;
+        //print();
+        size++;
+    }
+    
+    /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+    void addAtIndex(int index, int val) {
+        if(index > size + 1 || index < 0)
+            return;
+        if(index == 0){
+            addAtHead(val);
+            return;
+        }
+        if(index == size + 1){
+            addAtTail(val);
+            return;
+        }
+        Node* curr = head;
+        Node* temp = new Node(val);
+        int i = 0;
+        while(i < index - 1){
+            curr = curr->next;
+            i++;
+        }
+        //cout << "1 " << curr->val;
+        temp->next = curr->next;
+        curr->next = temp;
+        //print();
+        size++;
+    }
+    
+    /** Delete the index-th node in the linked list, if the index is valid. */
+    void deleteAtIndex(int index) {
+        if(index >= size || index < 0)
+            return;
+        Node* curr = head;
+        if(index == 0){
+            Node* temp = head;
+            head = curr->next;
+            delete(temp);
+        }
+        else{
+            int i = 0;
+            while(i < index - 1){
+                curr = curr->next;
+                i++;
+            }
+            //print();
+            Node* temp = curr->next;
+            curr->next = temp->next;
+            delete(temp);
+            //print();
+        }
+        size--;
+    }
+    void print(){
+        Node* curr = head;
+        while(curr){
+            cout << curr->val << " ";
+            curr = curr->next;
+        }
+        cout << endl;
+    }
+    ~MyLinkedList() {
+        Node* temp = head;
+        while(head){
+            head = head->next;
+            delete temp;
+            temp = head;
+        }
+    }
+    
+};

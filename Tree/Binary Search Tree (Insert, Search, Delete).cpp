@@ -37,6 +37,18 @@ BSTNode* Insert(BSTNode* root, int data){
     return root;
 }
 
+/*
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(!root) return new TreeNode(val);
+        if(root->val > val) root->left = insertIntoBST(root->left, val);
+        else if(root->val < val) root->right = insertIntoBST(root->right, val);
+        return root;
+    }
+};
+*/
+
 BSTNode* Search(BSTNode* root, int data){
     if(!root){
         return NULL;
@@ -51,6 +63,19 @@ BSTNode* Search(BSTNode* root, int data){
         return Search(root->right, data);
     }
 }
+
+/*
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(!root) return NULL;
+        if(root->val == val) return root;
+        else if(root->val > val) root->left = searchBST(root->left, val);
+        else root->right = searchBST(root->right, val);
+        return NULL;
+    }
+};
+*/
 
 BSTNode* inorderSucc(BSTNode* root){
     BSTNode* temp = root;
@@ -90,6 +115,45 @@ BSTNode* deleteNode(BSTNode* root, int data){
     }
     return root;
 }
+
+/*
+class Solution {
+public:
+    TreeNode* inorderSucc(TreeNode* root){
+        TreeNode* temp = root;
+        while(temp && temp->left)
+            temp = temp->left;
+        return temp;
+    }
+    
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(!root) return NULL;
+        if(root->val > key)
+            root->left = deleteNode(root->left, key);
+        else if(root->val < key)
+            root->right = deleteNode(root->right, key);
+        else{
+            if(!root->left && !root->right) root = NULL;
+            else if(!root->right){
+                TreeNode* temp = root;
+                root = root->left;
+                delete temp;
+            }
+            else if(!root->left){
+                TreeNode* temp = root;
+                root = root->right;
+                delete temp;
+            }
+            else{
+                TreeNode* temp = inorderSucc(root->right);
+                root->val = temp->val;
+                root->right = deleteNode(root->right, temp->val);
+            }
+        }
+        return root;
+    }
+};
+*/
 
 // Driver program to test above functions
 int main()
