@@ -10,7 +10,7 @@ We can implement it with the help of a list and map.
 
 class LRUCache {
     int Capacity;
-    list<pair<int,int>> dq;  // {key,value}
+    list<pair<int,int>> dll;  // {key,value}
     unordered_map<int,list<pair<int,int>> :: iterator> mp;  // {key,iterator}
     
 public:
@@ -23,9 +23,9 @@ public:
         if(mp.find(key)!=mp.end())
         {
             int value=(*mp[key]).second;              // updating it to make it MRU
-            dq.erase(mp[key]);
-            dq.push_front({key,value});   
-            mp[key]=dq.begin();                    // since MRU is at head so iterator=dq.begin()
+            dll.erase(mp[key]);
+            dll.push_front({key,value});   
+            mp[key]=dll.begin();                    // since MRU is at head so iterator=dll.begin()
             return value;
         }
         else return -1;
@@ -34,22 +34,22 @@ public:
     void put(int key, int value) {
         if(mp.find(key)!=mp.end())           // if present then update it to make it MRU
         {  
-            dq.erase(mp[key]);
-            dq.push_front({key,value});
-            mp[key]=dq.begin();
+            dll.erase(mp[key]);
+            dll.push_front({key,value});
+            mp[key]=dll.begin();
         }
         else {
-            if(dq.size()<Capacity)                   // just insert
+            if(dll.size()<Capacity)                   // just insert
             {
-                dq.push_front({key,value});
-                mp[key]=dq.begin();
+                dll.push_front({key,value});
+                mp[key]=dll.begin();
             }
             else {                                             // erase the LRU and make new page as MRU
-                int victimKey=dq.back().first;
-                dq.pop_back();
+                int victimKey=dll.back().first;
+                dll.pop_back();
                 mp.erase(victimKey);
-                dq.push_front({key,value});
-                mp[key]=dq.begin();
+                dll.push_front({key,value});
+                mp[key]=dll.begin();
             }
         }
     }
