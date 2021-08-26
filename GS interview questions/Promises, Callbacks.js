@@ -58,6 +58,19 @@ A promise is used to handle the asynchronous result of an operation. JavaScript 
 
 With Promises, we can defer execution of a code block until an async request is completed. This way, other operations can keep running without interruption.
 
+const myPromise = new Promise(function(myResolve, myReject) {
+// "Producing Code" (May take some time)
+
+  myResolve(); // when successful
+  myReject();  // when error
+});
+
+// "Consuming Code" (Must wait for a fulfilled Promise).
+myPromise.then(
+  function(value) { /* code if successful */ },
+  function(error) { /* code if some error */ }
+);
+
 Promises have three states:
 
 Pending: This is the initial state of the Promise before an operation begins

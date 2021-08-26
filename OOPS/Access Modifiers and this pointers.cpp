@@ -142,6 +142,7 @@ This pointer:-
 
 There are 2 important things with objects:-
 
+Every object in C++ has access to its own address through an important pointer called this pointer
 => Objects share different copies of data members with each other, meaning all get their own copy of data members but can only share single copy of member functions.
 => So, if only one copy of member functions is shared with each other, this will create a problem in updating and accessing data members. So the compiler supplies with a implicit pointer this.
 => this pointer, which is actually a function parameter used by the compiler to resolve self-references
