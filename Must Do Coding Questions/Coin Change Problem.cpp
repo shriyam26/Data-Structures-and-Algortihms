@@ -11,22 +11,7 @@ public:
         for(int i = 0; i < coins.size(); i++){
             for(int j = coins[i]; j < dp.size(); j++){
                 int rem = j - coins[i];
-                /*
-                cout << "i: " << i << " j: " << j << " rem: " << rem << endl;
-                cout << "dp[j]: " << dp[j] << " dp[rem] + 1: " << dp[rem] + 1 << endl;
-                for(int k = 0; k < dp.size(); k++){
-                    cout << dp[k] << " ";
-                }
-                cout << endl;
-                */
                 dp[j] = min(dp[j], 1 + dp[rem]);
-                /*
-                cout << "New dp[j]: " << dp[j] << endl;
-                for(int k = 0; k < dp.size(); k++){
-                    cout << dp[k] << " ";
-                }
-                cout << endl << endl;
-                */
             }
         }
         if(dp[amount] != INT_MAX)
